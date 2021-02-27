@@ -7,3 +7,6 @@
 
 ## Runnig the Backend server
 To run the backend server run the following command ```uvicorn main:app --reload```
+
+## Initial Frontend setup
+Generally the node_modules folder (which contains all the packages for the project) is ignored in github because it contains a lot of packages, so you will have to install the packages locally. In order to do that, get Node.js (if you don't have it) for the npm (node package manager), then access the repo via the Command Prompt, and do "npm install". This will install all the packages. After that, do this other command "npm start".
