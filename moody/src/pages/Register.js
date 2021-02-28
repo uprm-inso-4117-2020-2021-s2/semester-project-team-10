@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
+  avatar:{
+    backgroundColor:"#ed9f93"
+
+},
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
@@ -44,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor:"#ed9f93"
   },
 }));
 

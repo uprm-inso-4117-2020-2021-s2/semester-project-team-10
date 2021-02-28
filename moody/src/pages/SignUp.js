@@ -36,11 +36,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
+  //to change the color of the icon
+  avatar:{
+      backgroundColor:"#ed9f93"
+
+  },
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    
   },
   form: {
     width: '100%', 
