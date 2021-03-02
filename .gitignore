@@ -21,3 +21,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#Byte-compiled / optimized /DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+#Windows
+*.exe
+
+#VSCode
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
