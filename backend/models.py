@@ -1,9 +1,12 @@
+from typing import Optional
+
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 import datetime
 
-from database import Base
+from backend.database import Base
 
+from pydantic import BaseModel
 
 class User(Base):
     __tablename__ = "Users"
@@ -25,3 +28,19 @@ class Entry(Base):
     username = Column(String, ForeignKey("Users.username"))
 
     owner = relationship("User", back_populates="entry")
+
+class User(BaseModel):
+    username: str
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None
+
+class UserInDB(User):
+    hashed_password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str

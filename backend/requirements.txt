@@ -3,3 +3,6 @@ pydantic
 fastapi[all]
 sqlalchemy
 psycopg2
+python-jose[cryptography]
+cryptography
+passlib[bcrypt]
