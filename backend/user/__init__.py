@@ -17,3 +17,6 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+class UserInDB(User):
+    hashed_password: str

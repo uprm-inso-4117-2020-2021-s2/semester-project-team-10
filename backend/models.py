@@ -1,5 +1,4 @@
 from typing import Optional
-
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 import datetime
@@ -14,7 +13,6 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
-
     # entry = relationship("Entry", back_populates="owner")
 
 # class Entry(Base):
@@ -27,19 +25,3 @@ class User(Base):
     # username = Column(String, ForeignKey("Users.username"))
 
     # owner = relationship("User", back_populates="entry")
-
-# class User(BaseModel):
-    # username: str
-    # email: Optional[str] = None
-    # full_name: Optional[str] = None
-    # disabled: Optional[bool] = None
-
-# class UserInDB(User):
-    # hashed_password: str
-
-# class Token(BaseModel):
-    # access_token: str
-    # token_type: str
-
-# class TokenData(BaseModel):
-    # username: str
