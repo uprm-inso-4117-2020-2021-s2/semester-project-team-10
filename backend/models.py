@@ -4,43 +4,42 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 import datetime
 
-from backend.database import Base
-
-from pydantic import BaseModel
+from database import Base
 
 class User(Base):
-    __tablename__ = "Users"
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
+    is_active = Column(Boolean, default=True)
 
-    entry = relationship("Entry", back_populates="owner")
+    # entry = relationship("Entry", back_populates="owner")
 
-class Entry(Base):
-    __tablename__="Journal_Entry"
+# class Entry(Base):
+    # __tablename__="Journal_Entry"
 
-    id = Column(Integer, primary_key=True, index=True)
-    date = Column(DateTime, default=datetime.datetime.utcnow)
-    content = Column(String)
-    moods = Column(String)
-    username = Column(String, ForeignKey("Users.username"))
+    # id = Column(Integer, primary_key=True, index=True)
+    # date = Column(DateTime, default=datetime.datetime.utcnow)
+    # content = Column(String)
+    # moods = Column(String)
+    # username = Column(String, ForeignKey("Users.username"))
 
-    owner = relationship("User", back_populates="entry")
+    # owner = relationship("User", back_populates="entry")
 
-class User(BaseModel):
-    username: str
-    email: Optional[str] = None
-    full_name: Optional[str] = None
-    disabled: Optional[bool] = None
+# class User(BaseModel):
+    # username: str
+    # email: Optional[str] = None
+    # full_name: Optional[str] = None
+    # disabled: Optional[bool] = None
 
-class UserInDB(User):
-    hashed_password: str
+# class UserInDB(User):
+    # hashed_password: str
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+# class Token(BaseModel):
+    # access_token: str
+    # token_type: str
 
-class TokenData(BaseModel):
-    username: str
+# class TokenData(BaseModel):
+    # username: str
