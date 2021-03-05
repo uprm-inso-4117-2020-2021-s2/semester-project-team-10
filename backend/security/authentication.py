@@ -1,40 +1,33 @@
 from datetime import datetime, timedelta
 from typing import Optional
-
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from passlib.context import CryptContext # To Hash a password
 from jose import JWTError, jwt
+from sqlalchemy.orm import Session
+from pydantic import BaseModel
 
-from backend.models import *
+from user import UserInDB, User
+from user.repository import UserRepository
+from database import get_db
+from . import verify_password
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Secret Key to sign the JWT tokens
 SECRET_KEY = "To Generate a secure Secret Key run the command: openssl rand -hex 32"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-fake_users_db = {
-    "johndoe": {
-        "username": "johndoe",
-        "full_name": "John Doe",
-        "email": "johndoe@example.com",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
-        "disabled": False,
-    }
-}
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
-def get_user(db, username: str):
-    # TODO check if username is in our database
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
+class TokenData(BaseModel):
+    username: str
 
 # Decodes the received token, verifies it, and returns the current user
 # If the token is invalid, return an HTTP error
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -48,28 +41,19 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         token_data = TokenData(username=username)
     except JWTError:
         raise credentials_exception
-    user = get_user(fake_users_db, username=token_data.username)
+    user = UserRepository.get_user_by_username(db, token_data.username)
     if user is None:
         raise credentials_exception
     return user
 
-async def get_current_active_user(current_user: User = Depends(get_current_user)):
-    if current_user.disabled:
+def get_current_active_user(current_user: User = Depends(get_current_user)):
+    if not current_user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
-# Function that verifies if a received password matches the hash stored
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
-
-# Utility function to hash a password
-def get_password_hash(password):
-    return pwd_context.hash(password)
-
 # Authenticates and returns the User
-def authenticate_user(db, username: str, password: str):
-    # TODO get username from our database
-    user = get_user(db, username)
+def authenticate_user(db: Session, username: str, password: str):
+    user: UserInDB = UserRepository.get_user_by_username(db, username)
     if not user:
         return False
     if not verify_password(password, user.hashed_password):
@@ -80,9 +64,9 @@ def authenticate_user(db, username: str, password: str):
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.datetime.utcnow() + expires_delta
+        expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.datetime.utcnow() + timedelta(minutes=15)
+        expire = datetime.utcnow() + timedelta(minutes=15)
     to_encode.update({"exp" : expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
