@@ -5,7 +5,7 @@
 3. Navigate to the backend folder
 4. Run ```pip3 install -r requirements.txt``` in order to install the required libraries.
 
-## Runnig the Backend server
+## Running the Backend server
 To run the backend server run the following command ```uvicorn main:app --reload```
 
 To make sure that the user authentication works, run the command ```openssl rand -hex 32``` in a terminal window. It will generate a secure secret key, which needs to be pasted on the SECRET_KEY constant in loginsecurity.py.
