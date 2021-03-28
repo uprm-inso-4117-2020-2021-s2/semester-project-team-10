@@ -3,10 +3,14 @@ from typing import Optional
 from datetime import datetime
 
 #Pydantic Schema
-
-class journalEntry(BaseModel):
-    id: int
-    username: str
+class JournalEntryBase(BaseModel):
     date: Optional[datetime] = None
-    moods: list(str)
+    moods: list[str]
     content: str
+
+class JournalEntry(JournalEntryBase):
+    id: int
+    user_id: int
+
+    class Config:
+        orm_mode = True

@@ -14,8 +14,7 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
-
-    journal_entry = relationship("JournalEntry", back_populates="owner")
+    journal_entries = relationship("JournalEntry", backref="users")
 
 class JournalEntry(Base):
     __tablename__="journal_entry"
@@ -24,6 +23,4 @@ class JournalEntry(Base):
     date = Column(DateTime, default=datetime.datetime.utcnow)
     content = Column(String)
     moods = Column(ARRAY(String))
-    username = Column(String, ForeignKey("Users.username"))
-
-    owner = relationship("User", back_populates="journal_entry")
+    user_id = Column(Integer, ForeignKey("users.id"))
