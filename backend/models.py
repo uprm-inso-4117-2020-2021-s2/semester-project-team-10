@@ -1,6 +1,7 @@
 from typing import Optional
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.postgresql import ARRAY
 import datetime
 
 from database import Base
@@ -13,15 +14,13 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
-    # entry = relationship("Entry", back_populates="owner")
+    journal_entries = relationship("JournalEntry", backref="users")
 
-# class Entry(Base):
-    # __tablename__="Journal_Entry"
+class JournalEntry(Base):
+    __tablename__="journal_entry"
 
-    # id = Column(Integer, primary_key=True, index=True)
-    # date = Column(DateTime, default=datetime.datetime.utcnow)
-    # content = Column(String)
-    # moods = Column(String)
-    # username = Column(String, ForeignKey("Users.username"))
-
-    # owner = relationship("User", back_populates="entry")
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(DateTime, default=datetime.datetime.utcnow)
+    content = Column(String)
+    moods = Column(ARRAY(String))
+    user_id = Column(Integer, ForeignKey("users.id"))
