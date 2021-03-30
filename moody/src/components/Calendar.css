@@ -34,7 +34,6 @@
 
 
 /* GENERAL */
-
 * {
   box-sizing: border-box;
 }
@@ -46,6 +45,7 @@ body {
     line-height: 1.5;
     color: var(--text-color);
     background: var(--bg-color);
+    background-image: url('../images/4391855.png');
     position: relative;
 }
 
