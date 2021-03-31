@@ -18,6 +18,7 @@ function App() {
           <Route path='/signup' exact component={SignUp}/>
           <Route path='/calendar' exact component={Calendar}/>
         </Switch>
+        <Icons/>
       </Router>
     </>
   );
