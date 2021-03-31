@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Icons from '../components/Icons'
+
 
 
 import '../App.css';
@@ -33,7 +35,7 @@ const useStyles=makeStyles((theme) => ({
   container2:{
     position:'right',
     left:360,
-    marginBottom:80
+  
 
   },
 
@@ -110,6 +112,7 @@ export default function Home(){
       {/* <h1 className={classes.title}>About Moody</h1> */}
       <h1 className={classes.sentence1}>
         Moody is a personal journaling application that helps you express your inner feelings and thoughts.
+        
       </h1>
       <h1 className={classes.sentence2}> Don’t feel shy to remember past mistakes or feelings, Moody has got your back keeping your secrets 
       </h1>
@@ -128,8 +131,11 @@ export default function Home(){
       <h1 className={classes.container3}> 
        Getting started!
       </h1>
-
+      <div>
+      <Icons/>  
+      </div>
       
+
     </div>
     </div>
      
