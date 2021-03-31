@@ -5,12 +5,12 @@ const places=[
       
     },
     {
-      imageUrl:process.env.PUBLIC_URL + '/assets/entryicon4.jpeg',
+      imageUrl:process.env.PUBLIC_URL + '/assets/entryicon4.png',
       title:"Step 2 : Make your entries",
       
     },
     {
-      imageUrl:process.env.PUBLIC_URL + '/assets/moodit2.jpeg',
+      imageUrl:process.env.PUBLIC_URL + '/assets/moodit2.png',
       title:"Step 3: Record your mood"
     },
   ];
