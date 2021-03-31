@@ -10,11 +10,10 @@ const useStyles=makeStyles((theme) => ({
     height: '100vh',
     display:'flex',
     justifyContent:"center",
-    alignItems:'center'
+    alignItems:'center',
   
   }, 
   // myimage: {
-  //      backgroundSize:'cover',
   //      position:'center',
   // //   backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/journal.png"})`,
   // //   backgroundRepeat: 'no-repeat',
