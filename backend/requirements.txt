@@ -1,4 +1,9 @@
 starlette==0.13.6
 pydantic
 fastapi[all]
-
+sqlalchemy
+psycopg2
+python-jose[cryptography]
+cryptography
+passlib[bcrypt]
+alembic
