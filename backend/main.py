@@ -8,6 +8,8 @@ import models as models
 from user import User, UserCreate 
 from user.repository import UserRepository
 from security.authentication import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, authenticate_user, get_current_active_user, Token, OAuth2PasswordRequestForm
+from journalEntry import JournalEntry, JournalEntryBase
+from journalEntry.repository import JournalEntryRepository
 
 app = FastAPI()
 
@@ -36,11 +38,6 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-@app.post("/login")
-def login():
-    # TODO
-    return "Log in route"
-
 @app.post("/token", response_model=Token)
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_user(db, form_data.username, form_data.password)
@@ -59,3 +56,11 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
 @app.get("/users/me/", response_model=User)
 def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
+
+@app.get("/journal-entry", response_model=List[JournalEntry])
+def get_journal_entries(db: Session = Depends(get_db)):
+    return JournalEntryRepository.get_journal_entries(db)
+
+@app.post("/journal-entry/new", response_model=JournalEntry)
+def create_journal_entry(journal_entry: JournalEntryBase, db: Session = Depends(get_db), user: User = Depends(get_current_active_user)):
+    return JournalEntryRepository.create_journal_entry(db, journal_entry, user.id)

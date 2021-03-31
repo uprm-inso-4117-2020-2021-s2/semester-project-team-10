@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import background from './images/4391855.png';
+import Image from '../images/4391855.png';
 
 function Copyright() {
   return (
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(./images/4391855.png)',
+    backgroundImage: `url(${Image})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor: "#594D4F",
     backgroundSize: 'cover',
