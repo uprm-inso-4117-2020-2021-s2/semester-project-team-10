@@ -7,27 +7,20 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    marginTop:200,
+    marginTop:1000,
     width:540,
-    height:740,
+    height:660,
     background:'rgba(0,0,0,0)',
     
   },
   media: {
     height:430,
-    width:460,
+    width:480,
     postion:'absolute',
     alignItems:'center',
     textAlign:'center',
     marginTop:50,
     marginLeft:20,
-  },
-  media2:{
-
-  },
-
-  media3:{
-
   },
 
   title:{
