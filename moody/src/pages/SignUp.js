@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from '../images/4391855.png';
+import { useForm } from 'react-hook-form';
 
 function Copyright() {
   return (
@@ -56,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpSide() {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm();
+
+  //TODO: send data to backend
+  const onSubmit = (data) => console.log(data);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -69,54 +74,59 @@ export default function SignUpSide() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                autoComplete="fname"
-                name="firtsName"
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
+                  inputRef={register({ required: true, maxLength: 30 })}
+                  autoComplete="fname"
+                  name="firtsName"
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  inputRef={register({ required: true, maxLength: 30 })}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="lastName"
+                  label="Last Name"
+                  id="lastName"
+                  autoComplete="lname"
+                />
+              </Grid>
+            <Grid item xs={12}>
+                <TextField
+                  inputRef={register({ required: true })}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  autoComplete='email'
                 />
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="lastName"
-                    label="Last Name"
-                    id="lastName"
-                    autoComplete="lname"
-            />
-            </Grid>
             <Grid item xs={12}>
                 <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete='email'
-                    />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
+                  inputRef={register({ required: true, minLength: 5, maxLength: 30, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/})}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
                 />
             </Grid>
               {/* <Grid item xs={12} >
@@ -132,7 +142,7 @@ export default function SignUpSide() {
                 /> */}
               {/* </Grid> */}
             </Grid>
-                
+            {errors.password && "Password must be between 5 to 30 characters and must include at least one number"}
             <Button
               type="submit"
               fullWidth

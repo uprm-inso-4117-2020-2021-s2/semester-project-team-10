@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from '../images/4391855.png';
+import { useForm } from 'react-hook-form';
 
 function Copyright() {
   return (
@@ -54,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data)
+  };
+
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -67,8 +74,9 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <TextField
+              inputRef={register({ required: true })}
               variant="outlined"
               margin="normal"
               required
@@ -76,10 +84,12 @@ export default function SignInSide() {
               id="email"
               label="Email"
               name="email"
+              type = "email"
               autoComplete="email"
-              autoFocus
+              autoFocuss
             />
             <TextField
+              inputRef={register({ required: true, minLength: 5, maxLength: 30, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/ })}
               variant="outlined"
               margin="normal"
               required
@@ -90,6 +100,7 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
             />
+            {errors.password && "Password must be between 5 to 30 characters and must include at least one number"}
             <Button
               type="submit"
               fullWidth
