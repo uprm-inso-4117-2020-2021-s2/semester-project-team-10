@@ -1,5 +1,6 @@
 import React from "react";
-import { addMonths, addDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameMonth, isSameDay, toDate, format } from 'date-fns'
+import { addMonths, addDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameMonth, isSameDay, format, toDate } from 'date-fns'
+import Link from '@material-ui/core/Link';
 
 class Calendar extends React.Component {
   state = {
@@ -68,7 +69,8 @@ class Calendar extends React.Component {
               !isSameMonth(day, monthStart)? "disabled": isSameDay(day, selectedDate) ? "selected" : ""
             }`}
             key={day}
-            onClick={() => this.onDateClick(toDate(cloneDay))}
+            // onClick={() => this.onDateClick(toDate(cloneDay))}
+            onClick={event =>  window.location.href='/text'}
           >
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>

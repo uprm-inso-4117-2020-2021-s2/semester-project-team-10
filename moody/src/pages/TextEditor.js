@@ -1,14 +1,13 @@
 
 import React from "react";
-import TextEntry from '../components/TextEntryComp';
-import '../components/TextEntry.css'
+import TextEditor from '../components/TextEditor';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <main>
-          <TextEntry />
+          <TextEditor/>
         </main>
       </div>
     );

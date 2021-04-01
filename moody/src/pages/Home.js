@@ -44,8 +44,10 @@ const useStyles=makeStyles((theme) => ({
   container3:{
     background:'none',
     textAlign:'center',
+    position: 'center',
+    
     position:'absolute',
-    left:760,
+    
     top: 950,
     fontSize:'3rem',
   },
@@ -102,7 +104,7 @@ export default function Home(){
     <div className={classes.root}>
       <CssBaseline />
       
-      <div className={classes.container}>
+    <div className={classes.container}>
       {/* <h1 className={classes.title}>About Moody</h1> */}
         <h1 className={classes.about}>
           <p>Moody is a personal journaling application that helps you
