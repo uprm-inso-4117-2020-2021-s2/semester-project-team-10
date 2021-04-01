@@ -12,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from '../images/4391855.png';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useMutation } from "react-query";
+import Snackbar from '@material-ui/core/Snackbar';
 
 function Copyright() {
   return (
@@ -56,14 +59,51 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
+  const [snackBarMessage, setSnackBarMessage] = React.useState('')
+  const [open, setOpen] = React.useState(false);
+
+  const postSignInData = (data) => {
+    const params = new URLSearchParams()
+    params.append('username', 'testing2');
+    params.append('password', 'test');
+    return axios.post('http://localhost:8000/token',params)
+  }
+
+  const handleSignInData= useMutation(postSignInData ,{
+    onSuccess: async () => {
+      setSnackBarMessage('Sign in succesful!')
+      handleClick()
+    },
+    onError: async () => {
+      setSnackBarMessage('An error occured')
+      handleClick()
+    }
+  })
 
   const onSubmit = (data) => {
+    handleSignInData.mutate(data);
     console.log(data)
   };
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(!open);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+        message={snackBarMessage}
+      />
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -76,17 +116,16 @@ export default function SignInSide() {
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <TextField
-              inputRef={register({ required: true })}
+              inputRef={register({ required: true, maxLength: 30 })}
+              autoComplete="fname"
+              name="username"
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              type = "email"
-              autoComplete="email"
-              autoFocuss
+              id="username"
+              label="Username"
+              autoFocus
             />
             <TextField
               inputRef={register({ required: true, minLength: 5, maxLength: 30, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/ })}

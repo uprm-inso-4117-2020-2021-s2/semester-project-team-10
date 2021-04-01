@@ -7,11 +7,15 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import SignUp from './pages/SignUp'
 import Calendar from './pages/Calendar'
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
       <Router>
+        <QueryClientProvider client={queryClient}>
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home}/>
@@ -20,6 +24,7 @@ function App() {
           <Route path='/calendar' exact component={Calendar}/>
         </Switch>
         <Icons/>
+        </QueryClientProvider>
       </Router>
     </>
   );

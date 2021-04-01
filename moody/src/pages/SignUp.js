@@ -12,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from '../images/4391855.png';
 import { useForm } from 'react-hook-form';
+import { useMutation } from "react-query";
+import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
 
 function Copyright() {
   return (
@@ -58,12 +61,45 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUpSide() {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
+  const [snackBarMessage, setSnackBarMessage] = React.useState('')
+  const [open, setOpen] = React.useState(false);
 
-  //TODO: send data to backend
-  const onSubmit = (data) => console.log(data);
+  const postSignUpData= useMutation(data=> axios.post('http://localhost:8000/users', data), {
+    onSuccess: async () => {
+      setSnackBarMessage('Sig up succesful!')
+      handleClick()
+    },
+    onError: async () => {
+      setSnackBarMessage('An error occured')
+      handleClick()
+    }
+  })
+
+
+  const onSubmit = (data) => { 
+    postSignUpData.mutate(data)
+    console.log(data);
+  }
+
+   const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(!open);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+        message={snackBarMessage}
+      />
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -76,33 +112,47 @@ export default function SignUpSide() {
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}> */}
+                {/* <TextField */}
+                  {/* inputRef={register({ required: true, maxLength: 30 })} */}
+                  {/* autoComplete="fname" */}
+                  {/* name="firtsName" */}
+                  {/* variant="outlined" */}
+                  {/* margin="normal" */}
+                  {/* required */}
+                  {/* fullWidth */}
+                  {/* id="firstName" */}
+                  {/* label="First Name" */}
+                  {/* autoFocus */}
+                {/* /> */}
+              {/* </Grid> */}
+              {/* <Grid item xs={12} sm={6}> */}
+                {/* <TextField */}
+                  {/* inputRef={register({ required: true, maxLength: 30 })} */}
+                  {/* variant="outlined" */}
+                  {/* margin="normal" */}
+                  {/* required */}
+                  {/* fullWidth */}
+                  {/* name="lastName" */}
+                  {/* label="Last Name" */}
+                  {/* id="lastName" */}
+                  {/* autoComplete="lname" */}
+                {/* /> */}
+              {/* </Grid> */}
+            <Grid item xs={12}>
                 <TextField
                   inputRef={register({ required: true, maxLength: 30 })}
                   autoComplete="fname"
-                  name="firtsName"
+                  name="username"
                   variant="outlined"
                   margin="normal"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="username"
+                  label="Username"
                   autoFocus
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  inputRef={register({ required: true, maxLength: 30 })}
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="lastName"
-                  label="Last Name"
-                  id="lastName"
-                  autoComplete="lname"
-                />
-              </Grid>
+            </Grid>
             <Grid item xs={12}>
                 <TextField
                   inputRef={register({ required: true })}
