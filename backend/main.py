@@ -56,10 +56,7 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
 @app.get("/users/me/", response_model=User)
 def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
-#este es el que hicieron sammy y keneth
-# @app.get("/journal-entry", response_model=List[JournalEntry])
-# def get_journal_entries(db: Session = Depends(get_db)):
-#     return JournalEntryRepository.get_journal_entries(db)
+
 
 
 
@@ -92,9 +89,10 @@ def create_journal_entry(journal_entry: JournalEntryBase, db: Session = Depends(
     return JournalEntryRepository.create_journal_entry(db, journal_entry, user.id)
 
 #update the journal entry
-# @app.put("/journal-entry/update", response_model = JournalEntry)
-# def update_journal_entry(user_id: int,journal_id:int, db: Session = Depends(get_db)):
-#     return JournalEntryRepository.update_journal_entry(db, user_id, journal_id)
+@app.put("/journal-entry/update", response_model = JournalEntry)
+def update_journal_entry(journal_id:int, newContent: str,newMoods: str, user = Depends( get_current_active_user), db: Session = Depends(get_db)):
+    return JournalEntryRepository.update_journal_entry(db, user.id, journal_id, newContent, newMoods)
+
 
 #delete a journal entry
 @app.delete("/journal-entry-delete")

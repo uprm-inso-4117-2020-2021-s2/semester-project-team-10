@@ -30,8 +30,14 @@ class JournalEntryRepository():
         return db.query(models.JournalEntry).filter(models.JournalEntry.user_id == user_id, models.JournalEntry.date == date).all()
     
     #update a journal entry
-    # @staticmethod
-    # def update_journal_entry(db: Session, user_id: int, journal_id: int):
+    @staticmethod
+    def update_journal_entry(db: Session, user_id: int, journal_id: int, newContent: str, newMoods : str):
+        query = JournalEntryRepository.get_journal_entries_by_user(db, user_id, journal_id)
+        moods = newMoods.split(',')
+        query.content = newContent
+        query.moods = moods
+        db.commit()
+        return query
 
     #query to delete journal entry
     @staticmethod
@@ -39,4 +45,4 @@ class JournalEntryRepository():
         query = JournalEntryRepository.get_journal_entries_by_user(db, user_id, journal_id)
         db.delete(query)
         db.commit()
-        return "the journal entry " +str(journal_id) + " has been deleted"
+        return "the journal entry " + str(journal_id) + " has been deleted"
