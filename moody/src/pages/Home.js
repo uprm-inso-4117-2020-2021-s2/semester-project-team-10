@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Icons from '../components/Icons';
-
 import '../App.css';
 
 const useStyles=makeStyles((theme) => ({
@@ -10,11 +9,10 @@ const useStyles=makeStyles((theme) => ({
     height: '100vh',
     display:'flex',
     justifyContent:"center",
-    alignItems:'center'
+    alignItems:'center',
   
   }, 
   // myimage: {
-  //      backgroundSize:'cover',
   //      position:'center',
   // //   backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/journal.png"})`,
   // //   backgroundRepeat: 'no-repeat',
@@ -23,7 +21,11 @@ const useStyles=makeStyles((theme) => ({
   //  },
 
   container:{
+    width:1300,
+    border: 'black',
+    position: 'absolute',
     textAlign:'center',
+    top: 700,
   },
   // title:{
   //   color:'#030303',
@@ -31,54 +33,57 @@ const useStyles=makeStyles((theme) => ({
   //   height:540
 
   container2:{
-    position:'center',
-    marginTop:1700
-
-  },
-
-  // },
-
-  sentence1:{
-    background:'none',
-    textAlign:'center',
+    background: "none",
+    top: 100,
+    position: 'center',
+    textAlign: 'center',
     position:'absolute',
-    height:238,
-    left:160,
-    top:820,
-    
-
-  },
-
-  sentence2:{
-    background:'none',
-    textAlign:'center',
-    position:'absolute',
-    height: 238,
-    left:160,
-    top:860,
-
-  },
-
-  sentence3:{
-    background:'none',
-    textAlign:'center',
-    position:'absolute',
-    height: 238,
-    left:160, 
-    top:900,
+    // left:360,
   },
 
   container3:{
     background:'none',
     textAlign:'center',
+    position: 'center',
+    
     position:'absolute',
-    height:238,
-    left:600,
-    top: 1000,
+    
+    top: 950,
     fontSize:'3rem',
-    marginBottom:'50px',
+  },
+
+  about:{
+    background:'white',
+    textAlign:'center',
+    left: 200,
+    // position:'absolute',
+    height:150,
+
 
   },
+  Icons:{
+    position: 'absolute',
+    top: 100,
+  },
+
+  // sentence2:{
+  //   background:'white',
+  //   textAlign:'center',
+  //   height: 50,
+  //   left:160,
+  //   top:860,
+
+  // },
+
+  // sentence3:{
+  //   background:'white',
+  //   textAlign:'center',
+  //   height: 50,
+  //   left:160, 
+  //   top:900,
+  // },
+
+
 
   // step1:{
   //   background:'none',
@@ -101,30 +106,36 @@ export default function Home(){
       
     <div className={classes.container}>
       {/* <h1 className={classes.title}>About Moody</h1> */}
-      <h1 className={classes.sentence1}>
-        Moody is a personal journaling application that helps you express your inner feelings and thoughts.
-      </h1>
-      <h1 className={classes.sentence2}> Don’t feel shy to remember past mistakes or feelings, Moody has got your back keeping your secrets 
-      </h1>
+        <h1 className={classes.about}>
+          <p>Moody is a personal journaling application that helps you
+           express your inner feelings and thoughts.</p>
+          <p>Don’t feel shy to remember past mistakes or feelings, 
+          Moody has got your back keeping your secrets secure and only for your eyes.</p>
+        </h1>
+        {/* <h1 className={classes.sentence2}> Don’t feel shy to remember past mistakes or feelings, Moody has got your back keeping your secrets 
+        </h1>
     
-      <h1 className={classes.sentence3}> secure and only for your eyes.
-      </h1>
-      <div className={classes.container2}>
-      <img className="image2"
-        src={`${process.env.PUBLIC_URL}/assets/moodylogo4.png`}
-        alt="image2"
-        width="560"
-        height="560"
-        />
+        <h1 className={classes.sentence3}> secure and only for your eyes.
+        </h1> */}
       </div>
 
-      <h1 className={classes.container3}> 
-       Getting started!
-      </h1>
-      <Icons/>
-      
+      <div className={classes.container2}>
+        <img className="image2"
+          src={`${process.env.PUBLIC_URL}/assets/moodylogo4.png`}
+          alt="image2"
+          width="560"
+          height="560"
+          />
+      </div>
+
+      <div>
+        <h1 className={classes.container3}> 
+          Getting started!
+        </h1>        
+      </div>
+      <div className= {classes.Icons}><Icons/></div>
+    
     </div>
-    </div>
-     
+
   );
 }
