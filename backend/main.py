@@ -97,7 +97,6 @@ def create_journal_entry(journal_entry: JournalEntryBase, db: Session = Depends(
 #     return JournalEntryRepository.update_journal_entry(db, user_id, journal_id)
 
 #delete a journal entry
-# @app.delete("/journal-entry/delete/{user_id}/{journal_id}")
-# def delete_journal_entry(user_id: int,journal_id:int, db: Session = Depends(get_db)):
-#     JournalEntryRepository.delete_journal_entry(db, user_id, journal_id)
-#     return "entry has been deleted"
+@app.delete("/journal-entry-delete")
+def delete_journal_entry(journal_id:int, user = Depends( get_current_active_user), db: Session = Depends(get_db)):
+    return JournalEntryRepository.delete_journal_entry(db, user.id, journal_id)

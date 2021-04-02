@@ -3,10 +3,11 @@ from . import JournalEntryBase
 import models
 
 class JournalEntryRepository():
-    @staticmethod
-    def get_journal_entries(db: Session, skip: int = 0, limit: int = 100): 
-        return db.query(models.JournalEntry).offset(skip).limit(limit).all()
-    #query to get all journal entries from a user
+    # @staticmethod
+    # def get_journal_entries(db: Session, skip: int = 0, limit: int = 100): 
+    #     return db.query(models.JournalEntry).offset(skip).limit(limit).all()
+
+    #query to get all journal entries from the logged in user
     @staticmethod
     def get_all_journal_entries(db: Session):
         return db.query(models.JournalEntry).all()
@@ -35,5 +36,7 @@ class JournalEntryRepository():
     #query to delete journal entry
     @staticmethod
     def delete_journal_entry(db: Session, user_id: int, journal_id: int):
-        db.query.delete().where(models.JournalEntry.user_id == user_id, models.JournalEntry.id == journal_id)
-        (models.JournalEntry.user_id == user_id, models.JournalEntry.id == journal_id)
+        query = JournalEntryRepository.get_journal_entries_by_user(db, user_id, journal_id)
+        db.delete(query)
+        db.commit()
+        return "the journal entry " +str(journal_id) + " has been deleted"
