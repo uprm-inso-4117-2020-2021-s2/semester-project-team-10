@@ -57,19 +57,19 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
 def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 #este es el que hicieron sammy y keneth
-@app.get("/journal-entry", response_model=List[JournalEntry])
-def get_journal_entries(db: Session = Depends(get_db)):
-    return JournalEntryRepository.get_journal_entries(db)
+# @app.get("/journal-entry", response_model=List[JournalEntry])
+# def get_journal_entries(db: Session = Depends(get_db)):
+#     return JournalEntryRepository.get_journal_entries(db)
 
 
 
 #CRUD operations for journal-entry
 
 #get all entries from a user
-# @app.get("/journal-entry-user/{user_id}", response_model = List[JournalEntry])
-# def get_all_journal_entries(user_id: int, db: Session = Depends(get_db)):
+@app.get("/journal-entry-all", response_model = List[JournalEntry])
+def get_all_journal_entries(db: Session = Depends(get_db)):
     
-#     return JournalEntryRepository.get_journal_entries_by_user(db, user_id)
+    return JournalEntryRepository.get_all_journal_entries(db)
 
 #get a journal entry by id
 # ya este funciona
