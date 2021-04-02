@@ -9,7 +9,6 @@ import Calendar from './pages/Calendar'
 import TextEditor from './pages/TextEditor'
 import { QueryClient, QueryClientProvider } from "react-query";
 import {AuthProvider} from './components/AuthContext';
-import Icons from './components/Icons';
 
 function App() {
   const queryClient = new QueryClient();
@@ -27,7 +26,6 @@ function App() {
               <Route path='/calendar' exact component={Calendar}/>
               <Route path='/text' exact component={TextEditor}/>
             </Switch>
-            <Icons/>
           </AuthProvider>
         </QueryClientProvider>
       </Router>
