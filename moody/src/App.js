@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Icons from './components/Icons'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home'
 import Register from './pages/Register'
 import SignUp from './pages/SignUp'
 import Calendar from './pages/Calendar'
+import TextEditor from './pages/TextEditor'
 import { QueryClient, QueryClientProvider } from "react-query";
 import {AuthProvider} from './components/AuthContext';
 
@@ -24,6 +24,7 @@ function App() {
               <Route path='/register' exact component={Register}/>
               <Route path='/signup' exact component={SignUp}/>
               <Route path='/calendar' exact component={Calendar}/>
+              <Route path='/text' exact component={TextEditor}/>
             </Switch>
             <Icons/>
           </AuthProvider>

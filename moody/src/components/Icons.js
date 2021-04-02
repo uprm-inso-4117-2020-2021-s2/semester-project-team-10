@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles'
 import ImageCard from './ImageCard';
 import places from '../static/places';
+
 const useStyles=makeStyles((theme)=>({
     root:{
         minheight:'100vh',
@@ -10,7 +11,6 @@ const useStyles=makeStyles((theme)=>({
         alignItems:'center',
         margin:'30px',
         marginTop:'50px',
-
     },
 
 }));
