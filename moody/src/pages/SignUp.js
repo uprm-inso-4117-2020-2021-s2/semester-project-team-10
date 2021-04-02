@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from "react-query";
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -64,7 +65,7 @@ export default function SignUpSide() {
   const [snackBarMessage, setSnackBarMessage] = React.useState('')
   const [open, setOpen] = React.useState(false);
 
-  const postSignUpData= useMutation(data=> axios.post('http://localhost:8000/users', data), {
+  const handleSignUpData= useMutation(data=> axios.post('http://localhost:8000/users', data), {
     onSuccess: async () => {
       setSnackBarMessage('Sig up succesful!')
       handleClick()
@@ -76,7 +77,7 @@ export default function SignUpSide() {
   })
 
   const onSubmit = (data) => { 
-    postSignUpData.mutate(data)
+    handleSignUpData.mutate(data)
     console.log(data);
   }
 
@@ -90,6 +91,7 @@ export default function SignUpSide() {
 
   return (
     <Grid container component="main" className={classes.root}>
+      {handleSignUpData.isSuccess && <Redirect to='/'/>}
       <Snackbar
         anchorOrigin={{
           vertical: 'top',
@@ -203,7 +205,7 @@ export default function SignUpSide() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item >
-                <Link href="/register" variant="body2">
+                <Link href="/signin" variant="body2">
                   {"Already have an account? Sign Up"}
                 </Link>
               </Grid>

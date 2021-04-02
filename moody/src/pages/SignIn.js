@@ -17,7 +17,7 @@ import { useMutation } from "react-query";
 import Snackbar from '@material-ui/core/Snackbar';
 import {AuthContext} from '../components/AuthContext';
 import { set } from 'date-fns';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 function Copyright() {
   return (
