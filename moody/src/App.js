@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import SignUp from './pages/SignUp'
 import Calendar from './pages/Calendar'
 import { QueryClient, QueryClientProvider } from "react-query";
+import {AuthProvider} from './components/AuthContext';
 
 function App() {
   const queryClient = new QueryClient();
@@ -16,14 +17,16 @@ function App() {
     <>
       <Router>
         <QueryClientProvider client={queryClient}>
-        <Navbar />
-        <Switch>
-          <Route path='/' exact component={Home}/>
-          <Route path='/register' exact component={Register}/>
-          <Route path='/signup' exact component={SignUp}/>
-          <Route path='/calendar' exact component={Calendar}/>
-        </Switch>
-        <Icons/>
+          <AuthProvider>
+            <Navbar />
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/register' exact component={Register}/>
+              <Route path='/signup' exact component={SignUp}/>
+              <Route path='/calendar' exact component={Calendar}/>
+            </Switch>
+            <Icons/>
+          </AuthProvider>
         </QueryClientProvider>
       </Router>
     </>

@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useContext}from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,9 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useMutation } from "react-query";
 import Snackbar from '@material-ui/core/Snackbar';
+import {AuthContext} from '../components/AuthContext';
+import { set } from 'date-fns';
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -59,22 +62,26 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
-  const [snackBarMessage, setSnackBarMessage] = React.useState('')
-  const [open, setOpen] = React.useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState('')
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useContext(AuthContext);
+  const [username, SetUsername] = useState('')
 
   const postSignInData = (data) => {
     const params = new URLSearchParams()
-    params.append('username', 'testing2');
-    params.append('password', 'test');
+    params.append('username', data.username);
+    params.append('password', data.password);
+    SetUsername(data.username);
     return axios.post('http://localhost:8000/token',params)
   }
 
   const handleSignInData= useMutation(postSignInData ,{
-    onSuccess: async () => {
+    onSuccess: (response) => {
+      setState({user_name: username,access_token:response.data.access_token});
       setSnackBarMessage('Sign in succesful!')
       handleClick()
     },
-    onError: async () => {
+    onError: (error) => {
       setSnackBarMessage('An error occured')
       handleClick()
     }
@@ -95,6 +102,7 @@ export default function SignInSide() {
 
   return (
     <Grid container component="main" className={classes.root}>
+      {handleSignInData.isSuccess && <Redirect to='/'/>}
       <Snackbar
         anchorOrigin={{
           vertical: 'top',
@@ -140,6 +148,7 @@ export default function SignInSide() {
               autoComplete="current-password"
             />
             {errors.password && "Password must be between 5 to 30 characters and must include at least one number"}
+            {handleSignInData.isError && `${handleSignInData.error.response.data.detail}`}
             <Button
               type="submit"
               fullWidth

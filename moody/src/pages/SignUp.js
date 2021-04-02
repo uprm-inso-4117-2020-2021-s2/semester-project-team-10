@@ -75,7 +75,6 @@ export default function SignUpSide() {
     }
   })
 
-
   const onSubmit = (data) => { 
     postSignUpData.mutate(data)
     console.log(data);
