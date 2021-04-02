@@ -11,6 +11,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from '../images/4391855.png';
+import { useForm } from 'react-hook-form';
+import { useMutation } from "react-query";
+import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
 
 function Copyright() {
   return (
@@ -56,9 +60,45 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpSide() {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm();
+  const [snackBarMessage, setSnackBarMessage] = React.useState('')
+  const [open, setOpen] = React.useState(false);
+
+  const postSignUpData= useMutation(data=> axios.post('http://localhost:8000/users', data), {
+    onSuccess: async () => {
+      setSnackBarMessage('Sig up succesful!')
+      handleClick()
+    },
+    onError: async () => {
+      setSnackBarMessage('An error occured')
+      handleClick()
+    }
+  })
+
+  const onSubmit = (data) => { 
+    postSignUpData.mutate(data)
+    console.log(data);
+  }
+
+   const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(!open);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+        message={snackBarMessage}
+      />
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -69,54 +109,73 @@ export default function SignUpSide() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}> */}
+                {/* <TextField */}
+                  {/* inputRef={register({ required: true, maxLength: 30 })} */}
+                  {/* autoComplete="fname" */}
+                  {/* name="firtsName" */}
+                  {/* variant="outlined" */}
+                  {/* margin="normal" */}
+                  {/* required */}
+                  {/* fullWidth */}
+                  {/* id="firstName" */}
+                  {/* label="First Name" */}
+                  {/* autoFocus */}
+                {/* /> */}
+              {/* </Grid> */}
+              {/* <Grid item xs={12} sm={6}> */}
+                {/* <TextField */}
+                  {/* inputRef={register({ required: true, maxLength: 30 })} */}
+                  {/* variant="outlined" */}
+                  {/* margin="normal" */}
+                  {/* required */}
+                  {/* fullWidth */}
+                  {/* name="lastName" */}
+                  {/* label="Last Name" */}
+                  {/* id="lastName" */}
+                  {/* autoComplete="lname" */}
+                {/* /> */}
+              {/* </Grid> */}
+            <Grid item xs={12}>
                 <TextField
-                autoComplete="fname"
-                name="firtsName"
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
+                  inputRef={register({ required: true, maxLength: 30 })}
+                  autoComplete="fname"
+                  name="username"
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  autoFocus
                 />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
                 <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="lastName"
-                    label="Last Name"
-                    id="lastName"
-                    autoComplete="lname"
-            />
+                  inputRef={register({ required: true })}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  autoComplete='email'
+                />
             </Grid>
             <Grid item xs={12}>
                 <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete='email'
-                    />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
+                  inputRef={register({ required: true, minLength: 5, maxLength: 30, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/})}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
                 />
             </Grid>
               {/* <Grid item xs={12} >
@@ -132,7 +191,7 @@ export default function SignUpSide() {
                 /> */}
               {/* </Grid> */}
             </Grid>
-                
+            {errors.password && "Password must be between 5 to 30 characters and must include at least one number"}
             <Button
               type="submit"
               fullWidth
