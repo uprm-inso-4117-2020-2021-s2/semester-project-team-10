@@ -44,14 +44,6 @@ def test_root():
     assert response.json() == {'message': 'Hello World'}
 
 # User
-def test_login_for_access_token():
-     # LOGIN
-    response = client.post(
-        '/token',
-        data={'username':'tester', 'password':'testing' },
-    )
-    assert response.status_code == 200, response.text
-
 def test_create_user():
     response = client.post(
         '/users',
@@ -75,6 +67,14 @@ def test_create_user():
     )
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Email already registered"}
+
+def test_login_for_access_token():
+     # LOGIN
+    response = client.post(
+        '/token',
+        data={'username':'tester', 'password':'testing' },
+    )
+    assert response.status_code == 200, response.text    
 
 def test_get_all_users():
     response = client.get('/users')
