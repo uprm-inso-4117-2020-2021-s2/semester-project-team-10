@@ -64,9 +64,9 @@ def read_users_me(current_user: User = Depends(get_current_active_user)):
 
 #get all entries from a user
 @app.get("/journal-entry-all", response_model = List[JournalEntry])
-def get_all_journal_entries(db: Session = Depends(get_db)):
+def get_all_journal_entries(db: Session = Depends(get_db), user = Depends(get_current_active_user)):
     
-    return JournalEntryRepository.get_all_journal_entries(db)
+    return JournalEntryRepository.get_all_journal_entries(db, user.id)
 
 #get a journal entry by id
 # ya este funciona

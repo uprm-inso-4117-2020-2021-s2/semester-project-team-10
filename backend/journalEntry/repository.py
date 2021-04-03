@@ -9,8 +9,8 @@ class JournalEntryRepository():
 
     #query to get all journal entries from the logged in user
     @staticmethod
-    def get_all_journal_entries(db: Session):
-        return db.query(models.JournalEntry).all()
+    def get_all_journal_entries(db: Session, user_id: int):
+        return db.query(models.JournalEntry).filter(models.JournalEntry.user_id == user_id).all()
     #query to create a new journal entry
     @staticmethod
     def create_journal_entry(db: Session, journal_entry: JournalEntryBase, user_id: int):
