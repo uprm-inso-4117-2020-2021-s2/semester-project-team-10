@@ -132,12 +132,9 @@ export default function Home(){
       <div>
         <h1 className={classes.container3}> 
           Getting started!
-          
         </h1>    
-          
       </div>
       <div className= {classes.Icons}><Icons/></div>
-    
     </div>
 
   );

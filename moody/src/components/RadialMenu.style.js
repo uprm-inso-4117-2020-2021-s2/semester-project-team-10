@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const container = css`
-  border: 20px solid #ecd3ee;
+  border: 20px solid #8FB0AF;
 `;
 
 export const center = css`
@@ -18,14 +18,14 @@ export const center = css`
 
 export const slice = css`
   cursor: pointer;
-  color: grey;
+  color: #8FB0AF;
   background: radial-gradient(transparent ${({ centerRadius }) => `${centerRadius}, white ${centerRadius}`});
   &[filled=true] {
     color: black;
   }
   &:hover,
   &[active=true] {
-    color: black;
+    color: white;
     background: radial-gradient(transparent ${({ centerRadius }) => `${centerRadius}, #eee3ef ${centerRadius}`});
   }
-`;
+`; 

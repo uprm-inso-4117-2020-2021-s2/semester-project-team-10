@@ -3,13 +3,7 @@ import PieMenu, { PieCenter, Slice } from 'react-pie-menu';
 import { ThemeProvider } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faVenusMars,
   faArrowLeft,
-  faGenderless,
-  faMars,
-  faNeuter,
-  faTransgender,
-  faVenus,
   faGrinBeam,
   faAngry,
   faSadCry,
@@ -30,31 +24,49 @@ const theme = {
 
 const INITIAL = 0;
 const MOODRATING = 1;
-const GENDERS = 2;
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    this.mood = ""
     this.state = {
       mood: null,
-      paymentOption: null,
-      gender: null,
-      location: null,
       choice: 0,
     };
   }
 
-  showGenders = () => {
-    this.setState({ choice: GENDERS });
+
+  SelectedHappy = ()  =>{
+    this.mood = "happy";
+    console.log("Happy")
+    this.showRatings()
   }
-  selectGender = gender => () => {
-    this.setState({ gender });
+  SelectedSad =  ()  =>{
+    this.mood = "Sad"
+    console.log("Sad")
+    this.showRatings()
+  }  
+  SelectedScared =  ()  =>{
+    this.mood = "Scared"
+    console.log("Scared")
+    this.showRatings()
+  }  
+  SelectedAngry = ()  =>{
+    this.mood = "Angry"
+    console.log("Angry")
+    this.showRatings()
+  }  
+  SelectedMeh = mood => ()  =>{
+    this.mood = "Meh"
+    console.log("Meh")
+    this.showRatings()
   }
-  selectRating = mood => ()  =>{
-    this.setState({mood});
-  }
+  
   showRatings = () =>{
     this.setState({ choice: MOODRATING})
+  }
+  selectRating(num)  {
+    console.log(num)
   }
 
   goBack = () => {
@@ -64,7 +76,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { mood, gender, location, choice } = this.state;
+    const { angry,happy,sad,meh,scared, choice } = this.state;
     const Center = props => (
       <PieCenter {...props} onClick={this.goBack}>
         {choice !== 0 && <FontAwesomeIcon icon={faArrowLeft} size="2x" />}
@@ -75,31 +87,28 @@ export default class extends React.Component {
         <PieMenu centerRadius="30px" Center={Center}>
           {choice === 0 && (
             <>
-              <Slice onSelect={this.showRatings} attrs={{ filled: `${mood != null}` }}>
-                <FontAwesomeIcon icon={mood || faAngry} size="2x" />
+              <Slice onSelect={this.SelectedAngry} attrs={{ filled: `${angry != null}` }}>
+                <FontAwesomeIcon icon={angry || faAngry} size="2x" />
               </Slice>
-              <Slice onSelect={this.showRatings} attrs={{ filled: `${mood != null}` }}>
-                <FontAwesomeIcon icon={mood || faGrinBeam} size="2x" />
+              <Slice onSelect={this.SelectedHappy} attrs={{ filled: `${happy != null}` }}>
+                <FontAwesomeIcon icon={happy || faGrinBeam} size="2x" />
               </Slice>
-              <Slice onSelect={this.showRatings} attrs={{ filled: `${mood != null}` }}>
-                <FontAwesomeIcon icon={mood || faSadCry} size="2x" />
+              <Slice onSelect={this.SelectedSad} attrs={{ filled: `${sad != null}` }}>
+                <FontAwesomeIcon icon={sad || faSadCry} size="2x" />
               </Slice>
-              <Slice onSelect={this.showRatings} attrs={{ filled: `${mood != null}` }}>
-                <FontAwesomeIcon icon={mood || faMeh} size="2x" />
+              <Slice onSelect={this.SelectedMeh} attrs={{ filled: `${meh != null}` }}>
+                <FontAwesomeIcon icon={meh || faMeh} size="2x" />
               </Slice>
-              <Slice onSelect={this.showGenders} attrs={{ filled: `${gender != null}` }}>
-                <FontAwesomeIcon icon={gender || faVenusMars} size="2x" />
-              </Slice>
-              <Slice onSelect={this.showRatings} attrs={{ filled: "`${mood != null}`" }}>
-                <FontAwesomeIcon icon={location || faGrimace} size="2x" />
-              </Slice>
+              <Slice onSelect={this.SelectedScared} attrs={{ filled: "`${scared != null}`" }}>
+                <FontAwesomeIcon icon={scared || faGrimace} size="2x" />
+              </Slice> 
             </>
           )}
 
           { choice === MOODRATING && (
             <>
               <Slice
-                onSelect={this.selectRating(1)}
+                onClick={this.selectRating(1)}
                 contentHeight="66px"
                 // attrs={{ active: `${MOODRATING === 1}` }}
               >
@@ -165,61 +174,6 @@ export default class extends React.Component {
             </>
           )}
 
-          {choice === GENDERS && (
-            <>
-              faGenderless
-              <Slice
-                onSelect={this.selectGender(faGenderless)}
-                contentHeight="66px"
-                attrs={{ active: `${gender === faGenderless}` }}
-              >
-                <div>
-                  <FontAwesomeIcon icon={faGenderless} size="2x" />
-                  <p>Genderless</p>
-                </div>
-              </Slice>
-              <Slice
-                onSelect={this.selectGender(faVenus)}
-                contentHeight="66px"
-                attrs={{ active: `${gender === faVenus}` }}
-              >
-                <div>
-                  <FontAwesomeIcon icon={faVenus} size="2x" />
-                  <p>Female</p>
-                </div>
-              </Slice>
-              <Slice
-                onSelect={this.selectGender(faNeuter)}
-                contentHeight="66px"
-                attrs={{ active: `${gender === faNeuter}` }}
-              >
-                <div>
-                  <FontAwesomeIcon icon={faNeuter} size="2x" />
-                  <p>Neuter</p>
-                </div>
-              </Slice>
-              <Slice
-                onSelect={this.selectGender(faTransgender)}
-                contentHeight="66px"
-                attrs={{ active: `${gender === faTransgender}` }}
-              >
-                <div>
-                  <FontAwesomeIcon icon={faTransgender} size="2x" />
-                  <p>Transgender</p>
-                </div>
-              </Slice>
-              <Slice
-                onSelect={this.selectGender(faMars)}
-                contentHeight="66px"
-                attrs={{ active: `${gender === faMars}` }}
-              >
-                <div>
-                  <FontAwesomeIcon icon={faMars} size="2x" />
-                  <p>Male</p>
-                </div>
-              </Slice>
-            </>
-          )}
         </PieMenu>
       </ThemeProvider>
     );
