@@ -24,6 +24,7 @@ jobs:
         env:
           POSTGRES_USER: moody
           POSTGRES_DB: moody_testing
+          POSTGRES_PASSWORD: moodypass
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
