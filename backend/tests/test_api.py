@@ -11,8 +11,7 @@ import json
 db_url='localhost'
 db_name='moody_testing'
 db_username='moody'
-db_password=''
-# db_password='moodypass' If running on a db that requires password
+db_password='moodypass'
 # db_port='8083'          if No port is specefied 5342 is used as default
 
 # SQLALCHEMY_DATABASE_URL = f'postgresql://{db_username}:{db_password}@{db_url}:{db_port}/{db_name}'
