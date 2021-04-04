@@ -66,9 +66,7 @@ class Calendar extends React.Component {
         days.push(
           <div
             className={`col cell ${
-              !isSameMonth(day, monthStart)
-                ? "disabled"
-                : isSameDay(day, selectedDate) ? "selected" : ""
+              !isSameMonth(day, monthStart)? "disabled": isSameDay(day, selectedDate) ? "selected" : ""
             }`}
             key={day}
             // onClick={() => this.onDateClick(toDate(cloneDay))}

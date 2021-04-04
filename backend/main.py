@@ -30,7 +30,7 @@ app.add_middleware(
 models.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
-def root():
+async def root():
     return {"message": "Hello World"}
 
 @app.post("/users", response_model=User)

@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Icons from '../components/Icons';
+import RadialMenu from '../components/RadialMenu'
 import '../App.css';
 
 const useStyles=makeStyles((theme) => ({
@@ -131,11 +132,11 @@ export default function Home(){
       <div>
         <h1 className={classes.container3}> 
           Getting started!
-        </h1>        
+        </h1>    
       </div>
       <div className= {classes.Icons}><Icons/></div>
-    
     </div>
 
   );
 }
+

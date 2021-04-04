@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../components/Text.css'
 import ReactHtmlParser from 'react-html-parser';
+import RadialMenu from './RadialMenu';
 
 function Editor() {
 
@@ -23,7 +24,9 @@ function Editor() {
             {/* <div>
                 {ReactHtmlParser(value)}
             </div> */}
+            <div> <RadialMenu/> </div>
         </div>
+        
     )
 }
 
