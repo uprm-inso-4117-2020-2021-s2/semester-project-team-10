@@ -56,7 +56,7 @@ export default class extends React.Component {
     console.log("Angry")
     this.showRatings()
   }  
-  SelectedMeh = mood => ()  =>{
+  SelectedMeh =  () =>{
     this.mood = "Meh"
     console.log("Meh")
     this.showRatings()
@@ -65,8 +65,10 @@ export default class extends React.Component {
   showRatings = () =>{
     this.setState({ choice: MOODRATING})
   }
-  selectRating(num)  {
-    console.log(num)
+  selectRating = mood => () => {
+    console.log(mood)
+    this.setState({ mood})
+    
   }
 
   goBack = () => {
@@ -173,7 +175,6 @@ export default class extends React.Component {
               </Slice>
             </>
           )}
-
         </PieMenu>
       </ThemeProvider>
     );
