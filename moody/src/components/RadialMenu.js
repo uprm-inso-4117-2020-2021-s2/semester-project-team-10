@@ -99,7 +99,7 @@ export default class extends React.Component {
               <Slice onSelect={this.SelectedMeh} attrs={{ filled: `${meh != null}` }}>
                 <FontAwesomeIcon icon={meh || faMeh} size="2x" />
               </Slice>
-              <Slice onSelect={this.SelectedScared} attrs={{ filled: "`${scared != null}`" }}>
+              <Slice onSelect={this.SelectedScared} attrs={{ filled: `${scared != null}` }}>
                 <FontAwesomeIcon icon={scared || faGrimace} size="2x" />
               </Slice> 
             </>
@@ -108,7 +108,7 @@ export default class extends React.Component {
           { choice === MOODRATING && (
             <>
               <Slice
-                onClick={this.selectRating(1)}
+                onSelect={this.selectRating(1)}
                 contentHeight="66px"
                 // attrs={{ active: `${MOODRATING === 1}` }}
               >

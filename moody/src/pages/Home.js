@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Icons from '../components/Icons';
-import RadialMenu from '../components/RadialMenu'
 import '../App.css';
 
 const useStyles=makeStyles((theme) => ({
@@ -44,9 +43,9 @@ const useStyles=makeStyles((theme) => ({
 
   container3:{
     background:'none',
-    textAlign:'center',
-    position: 'center',
-    
+    textAlign:'left',
+    width: 350,
+    left: (window.innerWidth/2) - 175,
     position:'absolute',
     
     top: 950,
