@@ -56,7 +56,7 @@ export default class extends React.Component {
     console.log("Angry")
     this.showRatings()
   }  
-  SelectedMeh = mood => ()  =>{
+  SelectedMeh =  () =>{
     this.mood = "Meh"
     console.log("Meh")
     this.showRatings()
@@ -65,8 +65,10 @@ export default class extends React.Component {
   showRatings = () =>{
     this.setState({ choice: MOODRATING})
   }
-  selectRating(num)  {
-    console.log(num)
+  selectRating = mood => () => {
+    console.log(mood)
+    this.setState({ mood})
+    
   }
 
   goBack = () => {
@@ -99,7 +101,7 @@ export default class extends React.Component {
               <Slice onSelect={this.SelectedMeh} attrs={{ filled: `${meh != null}` }}>
                 <FontAwesomeIcon icon={meh || faMeh} size="2x" />
               </Slice>
-              <Slice onSelect={this.SelectedScared} attrs={{ filled: "`${scared != null}`" }}>
+              <Slice onSelect={this.SelectedScared} attrs={{ filled: `${scared != null}` }}>
                 <FontAwesomeIcon icon={scared || faGrimace} size="2x" />
               </Slice> 
             </>
@@ -108,7 +110,7 @@ export default class extends React.Component {
           { choice === MOODRATING && (
             <>
               <Slice
-                onClick={this.selectRating(1)}
+                onSelect={this.selectRating(1)}
                 contentHeight="66px"
                 // attrs={{ active: `${MOODRATING === 1}` }}
               >
@@ -173,7 +175,6 @@ export default class extends React.Component {
               </Slice>
             </>
           )}
-
         </PieMenu>
       </ThemeProvider>
     );
