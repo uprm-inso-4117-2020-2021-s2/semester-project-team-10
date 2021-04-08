@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from typing import Optional
-from datetime import datetime
+from datetime import date
 
 #Pydantic Schema
 class JournalEntryBase(BaseModel):
-    date: Optional[datetime] = None
+    date: Optional[date] 
     moods: list[str]
     content: str
 
