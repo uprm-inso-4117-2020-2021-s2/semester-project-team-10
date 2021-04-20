@@ -31,3 +31,11 @@ class UserRepository():
         db.commit()
         db.refresh(db_user)
         return db_user
+    
+    @staticmethod
+    def delete_user_by_id(db: Session, user_id: int):
+        user = UserRepository.get_user(db, user_id)
+        db.delete(user)
+        db.commit()
+        return "User deleted."
+        

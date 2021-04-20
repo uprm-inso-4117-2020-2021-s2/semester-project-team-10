@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useContext}from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,7 +10,14 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import background from './images/4391855.png';
+import Image from '../images/4391855.png';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useMutation } from "react-query";
+import Snackbar from '@material-ui/core/Snackbar';
+import {AuthContext} from '../components/AuthContext';
+import { set } from 'date-fns';
+import {Redirect} from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -26,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(./images/4391855.png)',
+    backgroundImage: `url(${Image})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor: "#594D4F",
     backgroundSize: 'cover',
@@ -54,9 +61,57 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm();
+  const [snackBarMessage, setSnackBarMessage] = useState('')
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useContext(AuthContext);
+  const [username, SetUsername] = useState('')
+
+  const postSignInData = (data) => {
+    const params = new URLSearchParams()
+    params.append('username', data.username);
+    params.append('password', data.password);
+    SetUsername(data.username);
+    return axios.post('http://localhost:8000/token',params)
+  }
+
+  const handleSignInData= useMutation(postSignInData ,{
+    onSuccess: (response) => {
+      setState({user_name: username,access_token:response.data.access_token});
+      setSnackBarMessage('Sign in succesful!')
+      handleClick()
+    },
+    onError: (error) => {
+      setSnackBarMessage('An error occured')
+      handleClick()
+    }
+  })
+
+  const onSubmit = (data) => {
+    handleSignInData.mutate(data);
+    console.log(data)
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(!open);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
+      {handleSignInData.isSuccess && <Redirect to='/'/>}
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+        message={snackBarMessage}
+      />
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -67,19 +122,21 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <TextField
+              inputRef={register({ required: true, maxLength: 30 })}
+              autoComplete="fname"
+              name="username"
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
               autoFocus
             />
             <TextField
+              inputRef={register({ required: true, minLength: 5, maxLength: 30, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/ })}
               variant="outlined"
               margin="normal"
               required
@@ -90,6 +147,8 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
             />
+            {errors.password && "Password must be between 5 to 30 characters and must include at least one number"}
+            {handleSignInData.isError && `${handleSignInData.error.response.data.detail}`}
             <Button
               type="submit"
               fullWidth

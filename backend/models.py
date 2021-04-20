@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY
 import datetime
@@ -20,7 +20,7 @@ class JournalEntry(Base):
     __tablename__="journal_entry"
 
     id = Column(Integer, primary_key=True, index=True)
-    date = Column(DateTime, default=datetime.datetime.utcnow)
+    date = Column(Date, default=datetime.date.today())
     content = Column(String)
     moods = Column(ARRAY(String))
     user_id = Column(Integer, ForeignKey("users.id"))
