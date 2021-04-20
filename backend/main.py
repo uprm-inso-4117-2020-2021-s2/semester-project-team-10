@@ -69,7 +69,6 @@ def get_all_journal_entries(db: Session = Depends(get_db), user = Depends(get_cu
     return JournalEntryRepository.get_all_journal_entries(db, user.id)
 
 #get a journal entry by id
-# ya este funciona
 @app.get("/journal-entry-by-id", response_model = JournalEntry)
 def get_journal_entry(journal_id:int, user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
     result = JournalEntryRepository.get_journal_entries_by_user(db, user.id, journal_id)
