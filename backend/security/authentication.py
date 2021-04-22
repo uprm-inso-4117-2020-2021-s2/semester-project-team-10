@@ -14,7 +14,7 @@ from . import verify_password
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Secret Key to sign the JWT tokens
-SECRET_KEY = "To Generate a secure Secret Key run the command: openssl rand -hex 32"
+SECRET_KEY = "96ab233410900d55701b356f883b08f87b317788ffc85180b5e8753b0ca0f813"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
