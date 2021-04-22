@@ -24,11 +24,13 @@ const theme = {
 
 const INITIAL = 0;
 const MOODRATING = 1;
+const CLOSED = 2;
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.mood = ""
+    this.icon = faMeh
     this.state = {
       mood: null,
       choice: 0,
@@ -38,26 +40,31 @@ export default class extends React.Component {
 
   SelectedHappy = ()  =>{
     this.mood = "happy";
+    this. icon = faGrinBeam
     console.log("Happy")
     this.showRatings()
   }
   SelectedSad =  ()  =>{
     this.mood = "Sad"
+    this.icon = faSadCry
     console.log("Sad")
     this.showRatings()
   }  
   SelectedScared =  ()  =>{
     this.mood = "Scared"
+    this.icon = faGrimace
     console.log("Scared")
     this.showRatings()
   }  
   SelectedAngry = ()  =>{
     this.mood = "Angry"
+    this.icon = faAngry
     console.log("Angry")
     this.showRatings()
   }  
   SelectedMeh =  () =>{
     this.mood = "Meh"
+    this.icon = faMeh
     console.log("Meh")
     this.showRatings()
   }
@@ -81,12 +88,21 @@ export default class extends React.Component {
     const { angry,happy,sad,meh,scared, choice } = this.state;
     const Center = props => (
       <PieCenter {...props} onClick={this.goBack}>
-        {choice !== 0 && <FontAwesomeIcon icon={faArrowLeft} size="2x" />}
+        {choice !== 0 && <FontAwesomeIcon icon={this.icon} size="2x" />}
+
       </PieCenter>
     );
     return (
       <ThemeProvider theme={theme}>
         <PieMenu centerRadius="30px" Center={Center}>
+
+          {
+            choice === CLOSED && (
+              <>
+              </>
+            )
+          }
+          
           {choice === 0 && (
             <>
               <Slice onSelect={this.SelectedAngry} attrs={{ filled: `${angry != null}` }}>

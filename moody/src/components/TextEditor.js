@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {Component, useState} from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../components/Text.css'
 import ReactHtmlParser from 'react-html-parser';
 import RadialMenu from './RadialMenu';
+// import Calendar from components
 
 function Editor() {
 
