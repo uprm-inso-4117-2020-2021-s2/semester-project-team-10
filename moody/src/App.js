@@ -7,6 +7,7 @@ import Register from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Calendar from './pages/Calendar'
 import TextEditor from './pages/TextEditor'
+import JournalEntryInfo from './pages/JournalEntryInfo'
 import { QueryClient, QueryClientProvider } from "react-query";
 import {AuthProvider} from './components/AuthContext';
 
@@ -25,6 +26,7 @@ function App() {
               <Route path='/signup' exact component={SignUp}/>
               <Route path='/calendar' exact component={Calendar}/>
               <Route path='/text' exact component={TextEditor}/>
+              <Route path='/journalEntry/:id' component={JournalEntryInfo}/>
             </Switch>
           </AuthProvider>
         </QueryClientProvider>
