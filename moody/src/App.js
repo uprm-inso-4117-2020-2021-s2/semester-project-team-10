@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Register from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Calendar from './pages/Calendar'
+import Export from './pages/Export'
 import TextEditor from './pages/TextEditor'
 import { QueryClient, QueryClientProvider } from "react-query";
 import {AuthProvider} from './components/AuthContext';
@@ -24,6 +25,7 @@ function App() {
               <Route path='/signin' exact component={Register}/>
               <Route path='/signup' exact component={SignUp}/>
               <Route path='/calendar' exact component={Calendar}/>
+              <Route path='/export' exact component={Export}/>
               <Route path='/text' exact component={TextEditor}/>
             </Switch>
           </AuthProvider>

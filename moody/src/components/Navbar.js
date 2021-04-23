@@ -46,6 +46,11 @@ function Navbar() {
                             </Link>
                          </li>
                          <li className='nav-item'>
+                            <Link to ='/export' className='nav-links' onClick={closeMobileMenu}>
+                                Export to CSV
+                            </Link>
+                         </li>
+                         <li className='nav-item'>
                             <Link to ='/signin' className='nav-links-mobile' onClick={closeMobileMenu}>
                                 Sign In
                             </Link>
