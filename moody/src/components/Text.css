@@ -2,6 +2,29 @@
     margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    width: 1350px;
-    align-content: 'center';
+    width: 1150px;
+    height: 2000px;
+}
+
+.ck-editor__editable {
+    min-height: 500px;
+}
+
+.radial {
+    margin-top: -500px;
+    position: absolute;
+    right: 10rem;
+}
+
+.boton {
+    margin-top: -1400px;
+    position: absolute;
+    right: 45rem;
+    background-color: #594D4F;
+    color:floralwhite;
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }

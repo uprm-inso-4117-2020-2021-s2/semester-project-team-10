@@ -86,7 +86,7 @@ export default class extends React.Component {
     );
     return (
       <ThemeProvider theme={theme}>
-        <PieMenu centerRadius="30px" Center={Center}>
+        <PieMenu radius="200px" centerRadius="30px" Center={Center}>
           {choice === 0 && (
             <>
               <Slice onSelect={this.SelectedAngry} attrs={{ filled: `${angry != null}` }}>
