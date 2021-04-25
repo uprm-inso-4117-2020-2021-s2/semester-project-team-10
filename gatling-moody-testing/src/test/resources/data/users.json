@@ -1,0 +1,82 @@
+[
+  { "email": "gatling@email",
+    "username": "gatling",
+    "password": "passgat"
+  },
+  { "email": "gatling2@email",
+    "username": "gatling2",
+    "password": "passgat2"
+  },
+  { "email": "gatling3@email",
+    "username": "gatling3",
+    "password": "passgat3"
+  },
+  { "email": "gatling4@email",
+    "username": "gatling4",
+    "password": "passgat4"
+  },
+  { "email": "gatling5@email",
+    "username": "gatling5",
+    "password": "passgat5"
+  },
+  { "email": "gatling6@email",
+    "username": "gatling6",
+    "password": "passgat6"
+  },
+  { "email": "gatling7@email",
+    "username": "gatling7",
+    "password": "passgat7"
+  },
+  { "email": "gatling8@email",
+    "username": "gatling8",
+    "password": "passgat8"
+  },
+  { "email": "gatling9@email",
+    "username": "gatling9",
+    "password": "passgat9"
+  },
+  { "email": "gatling10@email",
+    "username": "gatling10",
+    "password": "passgat10"
+  },
+  { "email": "gatling11@email",
+    "username": "gatling11",
+    "password": "passgat11"
+  },
+  { "email": "gatling12@email",
+    "username": "gatling12",
+    "password": "passgat12"
+  },
+  { "email": "gatling13@email",
+    "username": "gatling13",
+    "password": "passgat13"
+  },
+  { "email": "gatling14@email",
+    "username": "gatling14",
+    "password": "passgat14"
+  },
+  { "email": "gatling15@email",
+    "username": "gatling15",
+    "password": "passgat15"
+  },
+  { "email": "gatling16@email",
+    "username": "gatling16",
+    "password": "passgat16"
+  },
+  { "email": "gatling17@email",
+    "username": "gatling17",
+    "password": "passgat17"
+  },
+  { "email": "gatling18@email",
+    "username": "gatling18",
+    "password": "passgat18"
+  },
+  { "email": "gatling19@email",
+    "username": "gatling19",
+    "password": "passgat19"
+  },
+  { "email": "gatling20@email",
+    "username": "gatling20",
+    "password": "passgat20"
+  }
+]
