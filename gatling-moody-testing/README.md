@@ -7,8 +7,11 @@ The MoodySimulation.scala class contains the different scenarios to test.
 
 Make sure that the uvicorn server database is running with the following credentials. You can verify this in the database.py script.
 
-  > db_url='localhost' \n
-  > db_name='moody_testing' \n
-  > db_username='moody' \n
-  > db_password='moodypass' \n
+  > db_url='localhost'
+  > 
+  > db_name='moody_testing'
+  > 
+  > db_username='moody'
+  > 
+  > db_password='moodypass'
 
