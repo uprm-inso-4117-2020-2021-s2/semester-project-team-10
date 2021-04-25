@@ -6,9 +6,9 @@ To test it out, simply execute the Engine.scala object in the src>scala project 
 The MoodySimulation.scala class contains the different scenarios to test.
 
 Make sure that the uvicorn server is running with the credentials:
-``
-  db_url='localhost'
-  db_name='moody_testing'
-  db_username='moody'
-  db_password='moodypass'
-``
+
+  > db_url='localhost'
+  > db_name='moody_testing'
+  > db_username='moody'
+  > db_password='moodypass'
+
