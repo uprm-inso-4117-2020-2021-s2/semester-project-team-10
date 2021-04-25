@@ -1,12 +1,7 @@
-gatling-maven-plugin-demo
+gatling-moody-testing
 =========================
 
-Simple showcase of a maven project using the gatling-maven-plugin.
+To run the project. Import the project into IntelliJ IDE by selecting the pom.xml file in the Open File or Project window. This will set up the project with maven in the IDE.
+To test it out, simply execute the Engine.scala object in the src>scala project directoy.
 
-To test it out, simply execute the following command:
-
-    $mvn gatling:test -Dgatling.simulationClass=computerdatabase.BasicSimulation
-
-or simply:
-
-    $mvn gatling:test
+The MoodySimulation.scala class contains the different scenarios to test.
