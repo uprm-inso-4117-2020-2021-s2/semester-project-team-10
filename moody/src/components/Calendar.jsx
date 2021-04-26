@@ -122,7 +122,7 @@
 //NEW ATTEMPT
 import React from "react";
 import { Calendar, dateFnsLocalizer, momentLocalizer} from "react-big-calendar";
-import moment from "moment";
+// import moment from "moment";
 import { addMonths, addDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameMonth, isSameDay, format, toDate } from 'date-fns';
 import parse from "date-fns/parse";
 import getDay from "date-fns/getDay";
