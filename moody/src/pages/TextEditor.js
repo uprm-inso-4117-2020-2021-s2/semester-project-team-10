@@ -3,6 +3,7 @@ import React from "react";
 import TextEditor from '../components/TextEditor';
 import '../components/Text.css'
 
+
 class App extends React.Component {
   render() {
     return (
