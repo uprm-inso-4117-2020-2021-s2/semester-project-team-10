@@ -62,6 +62,7 @@ class Calendar extends React.Component {
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, dateFormat);
+
         const cloneDay = day;
         days.push(
           <div
@@ -69,9 +70,11 @@ class Calendar extends React.Component {
               !isSameMonth(day, monthStart)? "disabled": isSameDay(day, selectedDate) ? "selected" : ""
             }`}
             key={day}
+            
             onClick={() => this.onDateClick(toDate(cloneDay))}
             // onClick={event =>  window.location.href='/text'}
           >
+            
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
           </div>
@@ -91,9 +94,11 @@ class Calendar extends React.Component {
   onDateClick = day => {
     this.setState({
       selectedDate: day,
+      
       currentMonth: this.state.currentMonth
       
     });
+    console.log(day)
     window.location.href='/text'
   };
 

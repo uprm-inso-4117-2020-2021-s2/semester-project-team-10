@@ -4,11 +4,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../components/Text.css'
 import ReactHtmlParser from 'react-html-parser';
 import RadialMenu from './RadialMenu';
-// import Calendar from components
+// import Calendar from "components/Calendar";
 
-function Editor() {
+
+const Editor = (props) =>{
 
     const [value, setValue] = useState("") 
+    
     const handleOnChange = (e, editor) => {
         // console.log(editor.getData())
         const data = editor.getData()
@@ -22,10 +24,17 @@ function Editor() {
                 editor = {ClassicEditor}
                 onChange={handleOnChange}
             />
+            <button
+                onClick = {(e) => console.log({value})}
+            >
+                Submit
+            </button>
+            
+
             {/* <div>
                 {ReactHtmlParser(value)}
             </div> */}
-            <div> <RadialMenu/> </div>
+            
         </div>
         
     )
