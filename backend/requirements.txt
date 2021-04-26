@@ -8,3 +8,5 @@ cryptography
 passlib[bcrypt]
 alembic
 pytest
+ujson
+uvicorn
