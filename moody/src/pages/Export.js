@@ -31,7 +31,7 @@ const csvReport = {
 function App() {
   return (
     <div classname="App">
-      <h3>Export data to CSV - <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">Moody</a></h3>
+      <h3>Export data to CSV<a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer"></a></h3>
       <CSVLink {...csvReport}>Export Mood Journal to CSV</CSVLink>
       <h3></h3>
       <CSVLink {...csvReport}>Export Journal Entry to CSV</CSVLink>
