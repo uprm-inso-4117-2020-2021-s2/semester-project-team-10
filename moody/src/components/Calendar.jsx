@@ -146,10 +146,9 @@ const localizer = dateFnsLocalizer({
   locales
 });
 
-//const events = [{ start: new Date(), end: new Date(), title: "JOURNAL ENTRY" }];
+// const events = [{ start: new Date(), end: new Date(), title: "JOURNAL ENTRY" }];
 
 const DnDCalendar = withDragAndDrop(Calendar);
-
 
 // const myEventsList = [
 //   { start: new Date(), end: new Date(), title: "special event" }
@@ -175,15 +174,15 @@ class App extends React.Component{
 
   };
 
-  onDateClick = (day) => {
-        this.setState({
-          selectedDate: day
-        });
-      };
+  onDateClick = () => {
+
+        window.location.href='/text'
+        
+    };
 
   render() {
     return (
-      <div className="App" onClick={()=>window.location.href='/text'}>
+      <div className="App" >
         <DnDCalendar
           selectable
           defaultView="month"
@@ -192,6 +191,7 @@ class App extends React.Component{
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           onDateClick={this.onDateClick}
+          onSelectSlot={(e)=>window.location.href='/text'}
           resizable
           style={{ height: "100vh" }}
         />
@@ -207,6 +207,8 @@ export default App;
 // import events from './events';
 // import {Calendar, momentLocalizer} from "react-big-calendar";
 // import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+// import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+// import "react-big-calendar/lib/css/react-big-calendar.css";
 // import moment from "moment";
 
 // const localizer=momentLocalizer(moment);

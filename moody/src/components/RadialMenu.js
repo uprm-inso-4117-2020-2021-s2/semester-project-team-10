@@ -45,15 +45,17 @@ export default class extends React.Component {
       moodState: "",
       choice: 0,
     };
+
   }
 
   SelectedMood = (mood,icon) => {
+    
     this.icon = icon;
     this.mood = mood;
     this.setState({moodState: mood});
+    this.props.pageSend(this.mood)
     console.log(mood);
-    console.log(this.moodState)
-    // this.showRatings()
+
   }
   
   showRatings = () =>{
@@ -222,7 +224,9 @@ export default class extends React.Component {
           )}
           
         </PieMenu>
-        <p>{this.mood}</p>
+        <p
+        align="center"
+        >{this.mood}</p>
       </ThemeProvider>
     );
   }

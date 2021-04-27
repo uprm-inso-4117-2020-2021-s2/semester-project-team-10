@@ -32,17 +32,20 @@ const Editor = (props) =>{
                 onChange={handleOnChange}
                 
             />
-            <button
+
+            <div >            
+            {/* <button 
+                className = "boton"
                 onClick = {(e) => console.log({value})}
             >
                 Submit
-            </button>
-            
+            </button> */}
+            </div>
 
             {/* <div>
                 {ReactHtmlParser(value)}
             </div> */}
-            <div className="radial"> <RadialMenu/> </div>
+            {/* <div className="radial"> <RadialMenu/> </div> */}
         </div>
         
     )

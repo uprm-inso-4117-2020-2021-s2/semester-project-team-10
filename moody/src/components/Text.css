@@ -3,7 +3,7 @@
     margin-left: 50px;
     margin-right: 50px;
     width: 1150px;
-    height: 2000px;
+    height: 100%;
 }
 
 .ck-editor__editable {
@@ -11,15 +11,17 @@
 }
 
 .radial {
-    margin-top: -500px;
+    /* margin-top: -500px; */
+    top: 35%;
     position: absolute;
     right: 5%;
 }
 
 .boton {
-    margin-top: -1400px;
+    /* margin-top: -1400px; */
     position: absolute;
-    right: 45rem;
+    top: 102%;
+    right: 92.5%;
     background-color: #594D4F;
     color:floralwhite;
     padding: 8px 20px;
