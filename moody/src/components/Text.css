@@ -2,6 +2,31 @@
     margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    width: 1350px;
-    align-content: 'center';
+    width: 1150px;
+    height: 100%;
+}
+
+.ck-editor__editable {
+    min-height: 500px;
+}
+
+.radial {
+    /* margin-top: -500px; */
+    top: 35%;
+    position: absolute;
+    right: 5%;
+}
+
+.boton {
+    /* margin-top: -1400px; */
+    position: absolute;
+    top: 102%;
+    right: 92.5%;
+    background-color: #594D4F;
+    color:floralwhite;
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }

@@ -92,9 +92,9 @@ def get_journal_entry(journal_id: int, user: User = Depends(get_current_active_u
         return result
 
 #get all entries from a date
-# @app.get("/journal-entry-date", response_model = List[JournalEntry])
-# def get_all_journal_entries(user_id: User,date: str, db: Session = Depends(get_db)):
-#     return JournalEntryRepository.get_journal_entries_by_date(db, user_id, date)
+@app.get("/journal-entry-date", response_model = List[JournalEntry])
+def get_all_journal_entries(date: str, user: User = Depends(get_current_active_user) ,db: Session = Depends(get_db)):
+    return JournalEntryRepository.get_journal_entries_by_date(db, user.id, date)
 
 #create new journal entry
 @app.post("/journal-entry/new", response_model=JournalEntry)
