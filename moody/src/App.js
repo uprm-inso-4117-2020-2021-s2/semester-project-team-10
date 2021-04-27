@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home'
 import Register from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import Calendar from './pages/Calendar'
+import CalendarPage from './pages/Calendar'
 import Export from './pages/Export'
 import TextEditor from './pages/TextEditor'
 import JournalEntryInfo from './pages/JournalEntryInfo'
@@ -25,7 +25,7 @@ function App() {
               <Route path='/' exact component={Home}/>
               <Route path='/signin' exact component={Register}/>
               <Route path='/signup' exact component={SignUp}/>
-              <Route path='/calendar' exact component={Calendar}/>
+              <Route path='/calendar' exact component={CalendarPage}/>
               <Route path='/export' exact component={Export}/>
               <Route path='/text' exact component={TextEditor}/>
               <Route path='/journalEntry/:id' component={JournalEntryInfo}/>
