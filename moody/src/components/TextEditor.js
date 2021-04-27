@@ -9,19 +9,15 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 
 const Editor = (props) =>{
 
+
     const [value, setValue] = useState("") 
     
     const handleOnChange = (e, editor) => {
         // console.log(editor.getData())
         const data = editor.getData()
         setValue(data)
-        // config.removePlugins = 'resize';
-        // config.resize_enabled = false;
-        // config.resize_dir = 'both';
-        // config.width = 1000;
-        // config.height = 1000;
-        // editor.replace('body', {height: 500});
-        
+        props.textSend(data)
+
     }
 
     return (

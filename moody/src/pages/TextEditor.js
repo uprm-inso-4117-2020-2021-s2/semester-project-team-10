@@ -18,10 +18,14 @@ class App extends React.Component {
   getmood = (mood) =>{
     this.mood = mood
   }
+  getText = (text) =>{
+    this.state.text = text
+  }
 
   onSubmit() {
    
     console.log(this.mood)
+    console.log(this.state.text)
     // console.log(this.state.text)
   }
 
@@ -30,7 +34,7 @@ class App extends React.Component {
       <div className="App">
          
         <main>
-          <TextEditor />
+          <TextEditor textSend = {this.getText}/>
         <div >
         <button 
         className = "boton"

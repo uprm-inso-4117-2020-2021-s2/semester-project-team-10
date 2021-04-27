@@ -98,9 +98,6 @@ export default class extends React.Component {
           
           {choice === 0 && (
             <>
-
-
-
               <Slice onSelect={(e) => this.SelectedMood("happy",faSmile)} attrs={{ filled: `${happy != null}` }}>
                 <FontAwesomeIcon icon={happy || faSmile} size="2x" />
               </Slice>
