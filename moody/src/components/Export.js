@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { CSVLink } from "react-csv";
+import {Button} from '@material-ui/core'
  
 const headers = [
   { label: "First Name", key: "firstName" },
@@ -22,21 +23,19 @@ const data = [
   { firstName: "Charity", lastName: "Mathews", email: "fubigonero@mailinator.com", age: "63" }
 ];
  
-const csvReport = {
+
+function Export(props) {
+
+  const csvReport = {
   data: data,
   headers: headers,
-  filename: '.csv'
+  filename: 'journalEntries.csv'
 };
- 
-function App() {
   return (
-    <div classname="App">
-      <h3>Export data to CSV<a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer"></a></h3>
-      <CSVLink {...csvReport}>Export Mood Journal to CSV</CSVLink>
-      <h3></h3>
-      <CSVLink {...csvReport}>Export Journal Entry to CSV</CSVLink>
-    </div>
+      <CSVLink {...csvReport}>
+        <Button variant="contained" color="secondary">Export</Button>
+      </CSVLink>
   );
 }
  
-export default App;
+export default Export;

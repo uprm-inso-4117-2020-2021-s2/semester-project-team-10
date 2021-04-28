@@ -1,4 +1,4 @@
-import {React, useState, useContext} from 'react';
+ import {React, useState, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -27,28 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function JournalEntryPreview(props) {
-    const {id, date, moods} = props;
-
-    return (
-        <Box p={1} component={Link} to={`/journalEntry/${id}`}>
-            <Card>
-                <Box display="flex" flexDirection="row" p={1}>
-                    <Box p={1}>
-                        <Typography variant="h4" gutterBottom>
-                                {date}
-                        </Typography>
-                    </Box>
-                    <Divider orientation="vertical" flexItem/>
-                    <Box my="auto" m={2} display='flex'>
-                        {moods.map(mood => <Box mx={.2}><Chip label={mood} color="secondary"/></Box>)}
-                    </Box>
-                </Box>
-            </Card> 
-        </Box>
-    )
-}
-
 export default function JournalEntryInfo() {
     const {id} = useParams();
     const [state, setState] = useContext(AuthContext);
@@ -65,10 +43,10 @@ export default function JournalEntryInfo() {
     const { isLoading, error, data } = useQuery('GetJournalEntryInfo', getJournalEntry)
 
     const dummyJournalEntry = {
-        date: '12-04-2021',
-        moods: ['happy', 'sad', 'angry', 'flustered'],
+        date: '27-04-2021',
+        moods: ['happy', 'excited'],
         content: 'Testing journal entry.....',
-        id: 1,
+        id: 2,
         user_id: 1,
     }
 
@@ -87,7 +65,7 @@ export default function JournalEntryInfo() {
                 <Grid item xs={12} sm={6}>
                     <Box className={classes.paper}>
                         <Typography variant="h2" gutterBottom>
-                            April 5th 2021
+                            Today was great
                         </Typography>
                     </Box>
                 </Grid>
