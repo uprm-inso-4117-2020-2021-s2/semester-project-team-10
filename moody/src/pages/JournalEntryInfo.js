@@ -43,10 +43,10 @@ export default function JournalEntryInfo() {
     const { isLoading, error, data } = useQuery('GetJournalEntryInfo', getJournalEntry)
 
     const dummyJournalEntry = {
-        date: '12-04-2021',
-        moods: ['happy', 'sad', 'angry', 'flustered'],
+        date: '27-04-2021',
+        moods: ['happy', 'excited'],
         content: 'Testing journal entry.....',
-        id: 1,
+        id: 2,
         user_id: 1,
     }
 
@@ -65,7 +65,7 @@ export default function JournalEntryInfo() {
                 <Grid item xs={12} sm={6}>
                     <Box className={classes.paper}>
                         <Typography variant="h2" gutterBottom>
-                            April 5th 2021
+                            Today was great
                         </Typography>
                     </Box>
                 </Grid>

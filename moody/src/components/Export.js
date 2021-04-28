@@ -29,7 +29,7 @@ function Export(props) {
   const csvReport = {
   data: data,
   headers: headers,
-  filename: '.csv'
+  filename: 'journalEntries.csv'
 };
   return (
       <CSVLink {...csvReport}>

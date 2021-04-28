@@ -2,7 +2,7 @@ import {Container, CircularProgress,Paper,Grid,Box,Chip, Card, Divider, Typograp
 import {Link} from 'react-router-dom'
 
 export default function JournalEntryPreview(props) {
-    const {id, date, moods} = props;
+    const {id, title, moods} = props;
 
     return (
         <Box p={1} component={Link} to={`/journalEntry/${id}`}>
@@ -10,7 +10,7 @@ export default function JournalEntryPreview(props) {
                 <Box display="flex" flexDirection="row" p={1}>
                     <Box p={1}>
                         <Typography variant="h4" gutterBottom>
-                                {date}
+                                {title}
                         </Typography>
                     </Box>
                     <Divider orientation="vertical" flexItem/>
